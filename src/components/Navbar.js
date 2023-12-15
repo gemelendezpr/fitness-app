@@ -1,9 +1,9 @@
 import React from "react";
 import { Stack } from "@mui/material";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/Logo.png"; // Adjust the path to your logo
+import Logo from "../assets/images/Logo.png"; 
 
-import "../style/Navbar.css"; // Import the CSS file
+import "../style/Navbar.css";
 
 const Navbar = () => (
   <Stack className="navbar-container">
@@ -16,6 +16,7 @@ const Navbar = () => (
       fontFamily="roboto"
       fontSize="24px"
       alignItems="flex-end"
+      align-items="center"
     >
       <Link to="/" className="nav-link">
         Home
