@@ -19,7 +19,7 @@ const Navbar = () => (
       align-items="center"
       
     >
-      <Link to="/" className="nav-link" sx={{ textDecoration: 'none', color: '#39FF14' }}>
+      <Link to="/" className="nav-link" sx={{ textDecoration: 'none', color: '#39FF14'}}>
         Home
       </Link>
       <a href="#exercises" className="nav-link">

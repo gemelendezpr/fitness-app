@@ -16,6 +16,7 @@
   .nav-link {
     text-decoration: none;
     color: #ffffff;
+    font-weight: 500;
   }
   
   .nav-link:hover {

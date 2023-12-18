@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-
+import GitHubIcon from '../assets/icons/github-icon.png'
+import LinkedInIcon from '../assets/icons/linkedin-icon.png'
+import InstagramIcon from '../assets/icons/instagram-icon.png'
 
 import HeroBannerImage from '../assets/images/banner.png';
 
@@ -11,7 +13,7 @@ const HeroBanner = () => (
       No Shorcuts, <br />
       Just <span style={{ fontSize: '100px', color: '#39FF14', fontWeight: 900 }}>R</span><span style={{ fontSize: '70px', fontWeight: 900 }}>EPS</span>
     </Typography>
-    <Typography color="#39FF14" fontSize="22px" fontFamily="roboto" lineHeight="35px">
+    <Typography color="#39FF14" fontSize="22px" fontFamily="roboto" lineHeight="35px" fontWeight="1">
       Check out the most effective exercises personalized to you
     </Typography>
     <Stack>
@@ -26,15 +28,15 @@ const HeroBanner = () => (
       >
         {/* GitHub */}
         <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', opacity: '0.1', cursor: 'pointer' }}></div>
+          <img src={GitHubIcon} alt="GitHub" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', cursor: 'pointer' }} />
         </a>
         {/* LinkedIn */}
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', opacity: '0.1', cursor: 'pointer' }}></div>
+        <img src={LinkedInIcon} alt="LinkedIn" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', cursor: 'pointer' }} />
         </a>
         {/* Instagram */}
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', opacity: '0.1', cursor: 'pointer' }}></div>
+        <img src={InstagramIcon} alt="Instagram" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', cursor: 'pointer' }} />
         </a>
       </Box>
     </Stack>
