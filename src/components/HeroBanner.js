@@ -5,7 +5,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import HeroBannerImage from '../assets/images/banner.png';
 
 const HeroBanner = () => (
-  <Box sx={{ mt: { lg: '212px', xs: '70px' }, ml: { sm: '50px' } }} position="relative" p="20px">
+  <Box sx={{ mt: { lg: '100px', xs: '70px' }, ml: { sm: '50px' } }} position="relative" p="20px">
     <Typography color="#39FF14" fontWeight="600" fontSize="26px">Workout Tracker</Typography>
     <Typography color="#FFFFFF" fontWeight={700} sx={{ fontSize: { lg: '44px', xs: '40px' } }} mb="23px" mt="30px">
       No Shorcuts, <br />
@@ -26,15 +26,15 @@ const HeroBanner = () => (
       >
         {/* GitHub */}
         <a href="https://github.com" target="_blank" rel="noopener noreferrer">
-          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#39FF14', opacity: '0.1', cursor: 'pointer' }}></div>
+          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', opacity: '0.1', cursor: 'pointer' }}></div>
         </a>
         {/* LinkedIn */}
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#39FF14', opacity: '0.1', cursor: 'pointer' }}></div>
+          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', opacity: '0.1', cursor: 'pointer' }}></div>
         </a>
         {/* Instagram */}
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#39FF14', opacity: '0.1', cursor: 'pointer' }}></div>
+          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', opacity: '0.1', cursor: 'pointer' }}></div>
         </a>
       </Box>
     </Stack>
