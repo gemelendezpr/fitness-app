@@ -8,17 +8,18 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([])
 
+  // useEffect catch the categories and shows with gym logo in a horizontalscroll bar
   // useEffect(() => {
   //   const fetchExercisesData = async () => {
   //     const bodyPartsData = await fetchData(
-  //       "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+  //       "https://exercisedb.p.rapidapi.com/exercises/bodyPartList", // change with mock backend API
   //       exerciseOptions
   //     );
 
   //     setBodyParts(["all", ...bodyPartsData]);
   //   };
 
-  //   fetchExercisesData();
+  //   // fetchExercisesData();
   // }, []);
 
   const handleSearch = async () => {
