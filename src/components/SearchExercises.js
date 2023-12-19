@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
-import { exerciseOptions, fetchData } from "../utils/fetchData";
+import { fetchData } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
+
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
+  const baseUrl = 'http://localhost:4000';
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([])
+  
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      try {
+        // Fetch all exercises
+        const exercisesData = await fetchData(`${baseUrl}/exercises`);
+        setBodyParts(['all', ...new Set(exercisesData.map(exercise => exercise.bodyPart))]);
+      } catch (error) {
+        console.error('Error fetching exercises data:', error);
+        // Handle the error
+      }
+    };
 
-  // useEffect catch the categories and shows with gym logo in a horizontalscroll bar
-  // useEffect(() => {
-  //   const fetchExercisesData = async () => {
-  //     const bodyPartsData = await fetchData(
-  //       "https://exercisedb.p.rapidapi.com/exercises/bodyPartList", // change with mock backend API
-  //       exerciseOptions
-  //     );
-
-  //     setBodyParts(["all", ...bodyPartsData]);
-  //   };
-
-  //   // fetchExercisesData();
-  // }, []);
+    // Call the fetchExercisesData function
+    fetchExercisesData();
+  }, [bodyPart]);
 
   const handleSearch = async () => {
     if (search) {
-      const exercisesData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises",
-        exerciseOptions
-      );
 
-      // console.log(exercisesData); // Let's find the API exercises search
-
+      const exercisesData = await fetchData(`${baseUrl}/exercises`);
       const searchedExercises = exercisesData.filter(
         (exercise) =>
         exercise.name.toLowerCase().includes(search) ||

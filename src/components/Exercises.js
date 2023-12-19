@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import { Box, Stack, Typography } from '@mui/material';
 
-import { exerciseOptions, fetchData } from '../utils/fetchData';
+import { fetchData } from '../utils/fetchData';
 import ExerciseCard from './ExerciseCard';
 import Loader from './Loader';
 
@@ -15,22 +15,24 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     const fetchExercisesData = async () => {
       let exercisesData = [];
 
+      const baseUrl = 'http://localhost:4000';
+
       if (bodyPart === 'all') {
-        exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises?limit=900', exerciseOptions);
+        exercisesData = await fetchData(`${baseUrl}/exercises?limit=1320`);
       } else {
-        exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
+        exercisesData = await fetchData(`${baseUrl}/exercises/bodyPart/${bodyPart}`);
       }
 
-      setExercises(exercisesData);
+      setExercises(Array.isArray(exercisesData) ? exercisesData : []);
     };
 
     fetchExercisesData();
   }, [bodyPart, setExercises]);
 
-//   Pagination
-//   const indexOfLastExercise = currentPage * exercisesPerPage;
-//   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-//   const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+  Pagination
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
 
   const paginate = (e, value) => {
     setCurrentPage(value);
@@ -40,15 +42,15 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
 
 
-//   if (!currentExercises.length) return <Loader />;
+  if (!currentExercises.length) return <Loader />;
 
   return (
     <Box id="exercises" sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
       <Typography color="#FFFFFF" variant="h4" fontWeight="bold" sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="46px">Showing Results</Typography>
       <Stack direction="row" sx={{ gap: { lg: '107px', xs: '50px' } }} flexWrap="wrap" justifyContent="center">
-        {/* {currentExercises.map((exercise, idx) => (
+        {currentExercises.map((exercise, idx) => (
           <ExerciseCard key={idx} exercise={exercise} />
-        ))} */}
+        ))}
       </Stack>
       <Stack sx={{ mt: { lg: '114px', xs: '70px' } }} alignItems="center">
         {exercises.length > 9 && (
