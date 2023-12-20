@@ -1,114 +1,160 @@
-import { useContext, useEffect, useState} from 'react'
-import { WorkoutContext } from '../context/workout.context'
-import { useNavigate } from 'react-router-dom'
-import { API_URL } from '../utils/API_URL'
-import axios from 'axios'
+import React, { useContext, useEffect, useState } from "react";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { WorkoutContext } from "../context/workout.context";
+import { API_URL } from "../utils/API_URL";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Workout = () => {
-    const [thisWorkout, setThisWorkout] = useState(null)
-    const [exerciseToUpdate, setExerciseToUpdate] = useState(null)
-    const { workout, setWorkout, getWorkout } = useContext(WorkoutContext)
+  const [thisWorkout, setThisWorkout] = useState(null);
+  const [exercisesForEditing, setExercisesForEditing] = useState([]);
+  const { workout, setWorkout, getWorkout } = useContext(WorkoutContext);
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    const setIsEditing = (id) => {
-        console.log("this is our id", id)
-        let theseExercises = [...thisWorkout.exercises]
-        let thisIndex
-        let thisExercise = theseExercises.find((exercise, index) => {
-            thisIndex = index
-            return exercise.exerciseId == id
-        })
-        console.log("Exercise id to edit", thisExercise, thisIndex)
-        thisExercise = {...thisExercise, isEditing: true}
-        console.log("line 22", thisExercise)
-        theseExercises[thisIndex] = thisExercise
-        console.log("exercises after click", theseExercises)
-        setExerciseToUpdate(thisExercise)
-        setThisWorkout((prev) => ({...prev, ["exercises"]: theseExercises}))
-      }
+  const setIsEditing = (id) => {
+    if (!exercisesForEditing.includes(id)) {
+      setExercisesForEditing((prev) => [...prev, id]);
+    }
+  };
 
-      const handleSetChange = (e) => {
-        setExerciseToUpdate((prev) => ({...prev, [e.target.name]: Number(e.target.value)}))
-      }
+  const handleSetChange = (e, index) => {
+    const { name, value } = e.target;
+    setThisWorkout((prev) => ({
+      ...prev,
+      exercises: prev.exercises.map((exercise, i) =>
+        i === index ? { ...exercise, [name]: Number(value) } : exercise
+      ),
+    }));
+  };
 
-      const handleWorkoutUpdate = (e, index, workout) => {
-        e.preventDefault()
-        console.log("Updating Review")
-        let theseExercises = [...thisWorkout.exercises]
-        theseExercises[index] = exerciseToUpdate
+  const handleWorkoutUpdate = (e, workoutId) => {
+    e.preventDefault();
 
-        axios.put(API_URL + `/workouts/${workout}`, {...thisWorkout, ["exercises"]: theseExercises})
-        .then((response) => {
-            console.log("Updated workout ===>", response.data);
-            setExerciseToUpdate(null);
-            getWorkout(workout);
-          })
-          .catch((err) => {
-            console.log("Review update error");
-            console.log("This is the error", err);
-          });
-      }
+    axios
+      .put(API_URL + `/workouts/${workoutId}`, thisWorkout)
+      .then((response) => {
+        console.log("Updated workout ===>", response.data);
+        setExercisesForEditing([]);
+        getWorkout(workoutId);
+      })
+      .catch((err) => {
+        console.log("Workout update error");
+        console.log("This is the error", err);
+      });
+  };
 
-    useEffect(() => {
-        if (!workout) {
-            navigate('/start-workout')
-        } else {
-            console.log("this is workout page workout", workout)
-            setThisWorkout(workout)
-        }
-    }, [workout])
+  useEffect(() => {
+    if (!workout) {
+      navigate("/start-workout");
+    } else {
+      setThisWorkout(workout);
+    }
+  }, [workout]);
 
   return (
-    <div>
-        <h1>Your Workout</h1>
-        {thisWorkout &&
+    <Box>
+      <Typography variant="h2">Workout</Typography>
+      {thisWorkout && (
+        <>
+          <Typography variant="h3">{thisWorkout.name}</Typography>
+
+          {thisWorkout.exercises.length > 0 && (
             <>
-                <h1>{thisWorkout.name}</h1>
+              {thisWorkout.exercises.map((element, index) => (
+                <Box key={element.exerciseId} mb={2}>
+                  <Typography variant="h4">{element.exercise.name}</Typography>
+                  <Typography>lbs: {element.lbs}</Typography>
+                  <Typography>sets: {element.sets}</Typography>
+                  <Typography>reps: {element.reps}</Typography>
 
-                {/* {console.log("Workout from body", thisWorkout)} */}
+                  <Button
+                    variant="outlined"
+                    onClick={() => setIsEditing(element.exerciseId)}
+                    disabled={exercisesForEditing.includes(element.exerciseId)}
+                    sx={{
+                      borderColor: "#39FF14", // Neon green color
+                      color: "#39FF14", // Neon green color
+                      "&:hover": {
+                        borderColor: "#00CC00", // Darker green on hover
+                        color: "#00CC00", // Darker green on hover
+                      },
+                    }}
+                  >
+                    Add Sets
+                  </Button>
 
-                {thisWorkout.exercises.length > 0 && 
-                    <>
-                        {thisWorkout.exercises.map((element, index) => {
-                            return (
-                                <div>
-                                    <h3>{element.exercise.name}</h3>
-                                    <p>lbs: {element.lbs}</p>
-                                    <p>sets: {element.sets}</p>
-                                    <p>reps: {element.reps}</p>
-                                    <button onClick={() => setIsEditing(element.exerciseId)}>Add Sets</button>
+                  {exercisesForEditing.includes(element.exerciseId) && (
+                    <form
+                      onSubmit={(e) => handleWorkoutUpdate(e, thisWorkout.id)}
+                    >
+                      <TextField
+                        label="lbs"
+                        name="lbs"
+                        type="number"
+                        value={element.lbs}
+                        onChange={(e) => handleSetChange(e, index)}
+                        variant="outlined"
+                        fullWidth
+                        sx={{ marginBottom: 2, borderRadius: "10px" }}
+                      />
 
-                                    {
-                                        element.isEditing && exerciseToUpdate &&
-                                                                     
-                                    <form onSubmit={(e) => handleWorkoutUpdate(e, index, thisWorkout.id)}>
-                                        <label>
-                                            lbs
-                                            <input name='lbs' type='number' value={exerciseToUpdate.lbs} onChange={(e) => handleSetChange(e)} />
-                                        </label>
-                                        <label>
-                                            reps
-                                            <input name='reps' type='number' value={exerciseToUpdate.reps} onChange={(e) => handleSetChange(e)}/>
-                                        </label>
-                                        <label>
-                                            sets
-                                            <input name='sets' type='number' value={exerciseToUpdate.sets} onChange={(e) => handleSetChange(e)}/>
-                                        </label>
-                                        <button type='click'>submit</button>
-                                    </form>
-                                    }
-                                </div>
-                            )
-                        })}
-                    </>
-                }
-                
+                      <TextField
+                        label="reps"
+                        name="reps"
+                        type="number"
+                        value={element.reps}
+                        onChange={(e) => handleSetChange(e, index)}
+                        variant="outlined"
+                        fullWidth
+                        sx={{ marginBottom: 2, borderRadius: "10px" }}
+                      />
+
+                      <TextField
+                        label="sets"
+                        name="sets"
+                        type="number"
+                        value={element.sets}
+                        onChange={(e) => handleSetChange(e, index)}
+                        variant="outlined"
+                        fullWidth
+                        sx={{ marginBottom: 2, borderRadius: "10px" }}
+                      />
+
+                      <Button
+                        type="submit"
+                        variant="outlined"
+                        sx={{
+                          borderColor: "#39FF14", // Neon green color
+                          color: "#39FF14", // Neon green color
+                          "&:hover": {
+                            borderColor: "#00CC00", // Darker green on hover
+                            color: "#00CC00", // Darker green on hover
+                          },
+                        }}
+                      >
+                        Submit
+                      </Button>
+                    </form>
+                  )}
+                </Box>
+              ))}
             </>
-        }
-        <button onClick={() => setWorkout(null)}>Leave Workout</button>
-    </div>
-  )
-}
+          )}
+        </>
+      )}
+      <Button
+        onClick={() => setWorkout(null)}
+        sx={{
+          borderColor: "#39FF14",
+          color: "#39FF14",
+          "&:hover": { borderColor: "#00CC00", color: "#00CC00" },
+        }}
+      >
+        Leave Workout
+      </Button>
+    </Box>
+  );
+};
 
-export default Workout
+export default Workout;
