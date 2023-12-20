@@ -1,17 +1,16 @@
-import { useState, useContext, useEffect } from 'react';
-import { Box } from '@mui/material';
-
-import { WorkoutContext } from '../context/workout.context';
+import { useState, useContext, useEffect } from "react";
+import { WorkoutContext } from "../context/workout.context";
+import { Box, Typography } from "@mui/material";
 
 import Exercises from '../components/Exercises';
 import SearchExercises from '../components/SearchExercises';
-import HeroBanner from '../components/HeroBanner';
 
-const Home = () => {
+
+const AllExercises = () => {
   const [theseExercises, setTheseExercises] = useState([]);
   const [bodyPart, setBodyPart] = useState('all');
 
-  const { exercises, setExercises, getExercises } = useContext(WorkoutContext)
+  const { exercises, setExercises, getExercises, workout } = useContext(WorkoutContext)
 
   useEffect(() => {
     if(!exercises.length) {
@@ -21,14 +20,18 @@ const Home = () => {
     }
   }, [exercises])
 
-
   return (
     <Box>
-      <HeroBanner />
+
+      {workout && 
+        <Typography>{workout.name}</Typography>
+      }
+
       <SearchExercises setExercises={setTheseExercises} bodyPart={bodyPart} setBodyPart={setBodyPart} exercises={exercises} />
       <Exercises setExercises={setTheseExercises} exercises={theseExercises} bodyPart={bodyPart} />
-    </Box>
-  );
-};
 
-export default Home;
+    </Box>
+  )
+}
+
+export default AllExercises

@@ -8,7 +8,7 @@ import ExerciseVideos from '../components/ExerciseVideos';
 import SimilarExercises from '../components/SimilarExercises';
 
 const ExerciseDetail = () => {
-  const [exerciseDetail, setExerciseDetail] = useState({});
+  const [exerciseDetail, setExerciseDetail] = useState(null);
   const [exerciseVideos, setExerciseVideos] = useState([]);
   const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
   const [equipmentExercises, setEquipmentExercises] = useState([]);
@@ -21,16 +21,17 @@ const ExerciseDetail = () => {
       const baseUrl = 'http://localhost:4000';
       const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
 
-      const exerciseDetailData = await fetchData(`${baseUrl}/exercises/exercise/${id}`);
+      const exerciseDetailData = await fetchData(`${baseUrl}/exercises/${id}`);
+      console.log("Exercise", exerciseDetailData)
       setExerciseDetail(exerciseDetailData);
 
       const exerciseVideosData = await fetchData(`${youtubeSearchUrl}/search?query=${exerciseDetailData.name} exercise`, youtubeOptions);
       setExerciseVideos(exerciseVideosData.contents);
 
-      const targetMuscleExercisesData = await fetchData(`${baseUrl}/exercises/target/${exerciseDetailData.target}`);
+      const targetMuscleExercisesData = await fetchData(`${baseUrl}/exercises/?target=${exerciseDetailData.target}`);
       setTargetMuscleExercises(targetMuscleExercisesData);
 
-      const equimentExercisesData = await fetchData(`${baseUrl}/exercises/equipment/${exerciseDetailData.equipment}`);
+      const equimentExercisesData = await fetchData(`${baseUrl}/exercises/?equipment=${exerciseDetailData.equipment}`);
       setEquipmentExercises(equimentExercisesData);
     };
 

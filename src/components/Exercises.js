@@ -10,24 +10,37 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
 
+  const fetchExercisesData = async () => {
+    try {
+  
+      console.log("Trying to fetch")
+  
+      let exercisesData = [];
+  
+      const baseUrl = 'http://localhost:4000';
+  
+      if (bodyPart === 'all') {
+        exercisesData = await fetchData(`${baseUrl}/exercises`);
+      } else {
+        exercisesData = await fetchData(`${baseUrl}/exercises/?bodyPart=${bodyPart}`);
+      }
+  
+      console.log("Exercise array in try", exercisesData)
+  
+      setExercises(Array.isArray(exercisesData) ? exercisesData : []);
+    } catch(err) {
+      console.log("Exercise fetch error", err)
+      // setExercises([])
+    }
+  };
 //    console.log(exercises)
   useEffect(() => {
-    const fetchExercisesData = async () => {
-      let exercisesData = [];
 
-      const baseUrl = 'http://localhost:4000';
 
-      if (bodyPart === 'all') {
-        exercisesData = await fetchData(`${baseUrl}/exercises?limit=1320`);
-      } else {
-        exercisesData = await fetchData(`${baseUrl}/exercises/bodyPart/${bodyPart}`);
-      }
+      fetchExercisesData();
+  
 
-      setExercises(Array.isArray(exercisesData) ? exercisesData : []);
-    };
-
-    fetchExercisesData();
-  }, [bodyPart, setExercises]);
+  }, [bodyPart]);
 
   Pagination
   const indexOfLastExercise = currentPage * exercisesPerPage;

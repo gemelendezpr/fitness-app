@@ -4,23 +4,31 @@ import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { fetchData } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
+import axios from "axios";
 
-const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
+
+const SearchExercises = ({ setExercises, bodyPart, setBodyPart, exercises }) => {
   const baseUrl = 'http://localhost:4000';
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([])
   
-  useEffect(() => {
-    const fetchExercisesData = async () => {
-      try {
-        // Fetch all exercises
-        const exercisesData = await fetchData(`${baseUrl}/exercises`);
+  const fetchExercisesData = async () => {
+    try {
+      // Fetch all exercises
+      if (!exercises.length) {
+        const results = await axios.get(`${baseUrl}/exercises`);
+        let exercisesData = results.data
         setBodyParts(['all', ...new Set(exercisesData.map(exercise => exercise.bodyPart))]);
-      } catch (error) {
-        console.error('Error fetching exercises data:', error);
-        // Handle the error
+      } else {
+        console.log("line 23 search", new Set(exercises.map(exercise => exercise.bodyPart)))
+        setBodyParts(['all', ...new Set(exercises.map(exercise => exercise.bodyPart))])
       }
-    };
+    } catch (error) {
+      console.error('Error fetching exercises data:', error);
+      // Handle the error
+    }
+  };
+  useEffect(() => {
 
     // Call the fetchExercisesData function
     fetchExercisesData();

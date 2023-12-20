@@ -7,10 +7,16 @@
 //   };
 
   export const fetchData = async (url, options) => {
-    const baseUrl = 'http://localhost:4000'; // Adjust the base URL for your local server
-    const res = await fetch(url, options);
-  const data = await res.json();
-  return data;
+    try {
+
+      const baseUrl = 'http://localhost:4000'; // Adjust the base URL for your local server
+      const res = await fetch(url, options);
+      const data = await res.json();
+      console.log("This is fetched data ===>", data)
+      return data;
+    } catch(err) {
+      console.log("Fetching error", err)
+    }
 };
 
   export const youtubeOptions = {
