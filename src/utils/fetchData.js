@@ -9,7 +9,7 @@
   export const fetchData = async (url, options) => {
     try {
 
-      const baseUrl = 'http://localhost:4000'; // Adjust the base URL for your local server
+      const baseUrl = 'https://repsworkouttracker.adaptable.app'; // Adjust the base URL for your local server
       const res = await fetch(url, options);
       const data = await res.json();
       console.log("This is fetched data ===>", data)

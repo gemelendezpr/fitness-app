@@ -18,7 +18,7 @@ const ExerciseDetail = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     const fetchExercisesData = async () => {
-      const baseUrl = 'http://localhost:4000';
+      const baseUrl = 'https://repsworkouttracker.adaptable.app';
       const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
 
       const exerciseDetailData = await fetchData(`${baseUrl}/exercises/${id}`);

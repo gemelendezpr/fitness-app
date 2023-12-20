@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart, exercises }) => {
-  const baseUrl = 'http://localhost:4000';
+  const baseUrl = 'https://repsworkouttracker.adaptable.app';
   const [search, setSearch] = useState('');
   const [bodyParts, setBodyParts] = useState([])
   

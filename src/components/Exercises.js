@@ -17,7 +17,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   
       let exercisesData = [];
   
-      const baseUrl = 'http://localhost:4000';
+      const baseUrl = 'https://repsworkouttracker.adaptable.app';
   
       if (bodyPart === 'all') {
         exercisesData = await fetchData(`${baseUrl}/exercises`);
