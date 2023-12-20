@@ -27,13 +27,13 @@ const WhiteOutlinedTextField = styled(TextField)({
       borderColor: "#FFFFFF", // White outlined border color on hover
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#00FF00", // White outlined border color when focused
+      borderColor: "#00FF00", // Neon green outlined border color when focused
     },
   },
   "& .MuiInputLabel-root": {
     color: "#FFFFFF", // White label color
     "&:hover": {
-      color: "##00FF00", // White label color on hover
+      color: "#00FF00", // Neon grenn label color on hover
     },
   },
   "& .MuiInputBase-input": {

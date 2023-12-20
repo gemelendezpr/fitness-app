@@ -71,7 +71,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart, exercises }) => 
             input: { fontWeight: "700", border: "none", borderRadius: "4px" },
             width: { lg: "1170px", xs: "350px" },
             backgroundColor: "#fff",
-            borderRadius: "40px",
+            borderRadius: "4px",
           }}
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
@@ -82,7 +82,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart, exercises }) => 
           className="search-btn"
           sx={{
             bgcolor: "#39FF14",
-            borderRadius: "40px",
+            borderRadius: "4px",
             color: "#fff",
             textTransform: "none",
             width: { lg: "173px", xs: "80px" },
