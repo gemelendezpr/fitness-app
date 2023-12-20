@@ -17,7 +17,7 @@ const WorkoutProvider = ({ children }) => {
 
     
     const getAllWorkouts = () => {
-        axios.get("http://localhost:4000/workouts")
+        axios.get("https://repsworkouttracker.adaptable.app/workouts")
         .then((response) => {
             console.log("line 22 context", response)
             if (response.data.length) {             
@@ -54,7 +54,7 @@ const WorkoutProvider = ({ children }) => {
 
         try {
 
-            let result = await axios.get(`http://localhost:4000/workouts/${id}`)
+            let result = await axios.get(`https://repsworkouttracker.adaptable.app/workouts/${id}`)
 
             let thisWorkout = result.data
             setWorkout(thisWorkout)
@@ -67,7 +67,7 @@ const WorkoutProvider = ({ children }) => {
     }
 
     const deleteWorkout = (id) => {
-        axios.delete(`http://localhost:4000/workouts/${id}`)
+        axios.delete(`https://repsworkouttracker.adaptable.app/workouts/${id}`)
             .then((response) => {
                 console.log("Deleted workout", response.data)
                 getAllWorkouts()
@@ -85,7 +85,7 @@ const WorkoutProvider = ({ children }) => {
             exercises: []
         }
 
-        axios.post("http://localhost:4000/workouts", newWorkout)
+        axios.post("https://repsworkouttracker.adaptable.app/workouts", newWorkout)
             .then((response) => {
                 console.log("New Workout", response.data)
                 setWorkout(response.data)
@@ -121,7 +121,7 @@ const WorkoutProvider = ({ children }) => {
             let newExercises = [...workout.exercises, thisExercise]
             // setWorkout((prev) => ({...prev, ['exercises']: newExercises}))
 
-            axios.put(`http://localhost:4000/workouts/${workout.id}`, {...workout, ["exercises"]: newExercises})
+            axios.put(`https://repsworkouttracker.adaptable.app/workouts/${workout.id}`, {...workout, ["exercises"]: newExercises})
                 .then((response) => {
                     console.log("Updated workout", response.data)
                     // setWorkout(response.data)
@@ -142,7 +142,7 @@ const WorkoutProvider = ({ children }) => {
 
 
 
-        axios.get('http://localhost:4000/workouts')
+        axios.get('https://repsworkouttracker.adaptable.app/workouts')
             .then((response) => {
                 console.log("Workouts ===>", response.data)
                 setWorkouts(response.data)
