@@ -23,6 +23,6 @@
     method: 'GET',
     headers: {
       'X-RapidAPI-Host': 'youtube-search-and-download.p.rapidapi.com',
-      'X-RapidAPI-Key': '2a1b027512msh78ad975f80c8e0ap17fc03jsnfc411b905bd0',
+      // 'X-RapidAPI-Key': '2a1b027512msh78ad975f80c8e0ap17fc03jsnfc411b905bd0',
     },
   };

@@ -1,11 +1,21 @@
 import { useContext } from 'react'
 import { WorkoutContext } from '../context/workout.context'
 import { Typography, Stack, Button } from '@mui/material';
+import { styled } from '@mui/system';
 
 
 import BodyPartImage from '../assets/icons/body-part.png';
 import TargetImage from '../assets/icons/target.png';
 import EquipmentImage from '../assets/icons/equipment.png';
+
+const NeonGreenOutlinedButton = styled(Button)({
+  borderColor: '#00FF00', // Neon green outlined border color
+  color: '#00FF00', // Neon green text color
+  '&:hover': {
+    backgroundColor: '#00FF00', // Neon green background color on hover
+    color: '#FFFFFF', // White text color on hover
+  },
+});
 
 const Detail = ({ exerciseDetail }) => {
   const { bodyPart, gifUrl, name, target, equipment, id } = exerciseDetail;
@@ -39,17 +49,18 @@ const Detail = ({ exerciseDetail }) => {
           <Typography sx={{ fontSize: { lg: '64px', xs: '30px' } }} fontWeight={700} textTransform="capitalize">
             {name}
           </Typography>
-          <Button variant='outlined' onClick={() => addToWorkout(exerciseDetail)}>Add to Workout</Button>
-        </Stack>
-        <Typography sx={{ fontSize: { lg: '24px', xs: '18px' } }} color="#4F4C4C">
+          <NeonGreenOutlinedButton variant="outlined" onClick={() => addToWorkout(exerciseDetail)}>
+            Add to Workout
+          </NeonGreenOutlinedButton>        </Stack>
+        <Typography sx={{ fontSize: { lg: '24px', xs: '18px' } }} color="#FFF">
           Exercises keep you strong.{' '}
-          <span style={{ textTransform: 'capitalize' }}>{name}</span> bup is one
+          <span style={{ textTransform: 'capitalize' }}>{name}</span> is one
           of the best <br /> exercises to target your {target}. It will help you improve your{' '}
           <br /> mood and gain energy.
         </Typography>
         {extraDetail?.map((item) => (
           <Stack key={item.name} direction="row" gap="24px" alignItems="center">
-            <Button sx={{ background: '#FFF2DB', borderRadius: '50%', width: '100px', height: '100px' }}>
+            <Button sx={{ background: '#00FF00', borderRadius: '50%', width: '100px', height: '100px' }}>
               <img src={item.icon} alt={bodyPart} style={{ width: '50px', height: '50px' }} />
             </Button>
             <Typography textTransform="capitalize" sx={{ fontSize: { lg: '30px', xs: '20px' } }}>

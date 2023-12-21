@@ -46,11 +46,11 @@ const Navbar = () => {
         <Link to='/all-exercises' className="nav-link">Exercises</Link>
 
         <Link to="/start-workout" className="nav-link">
-          Start New Workout
+          Start Workout
         </Link>
         {
           workout &&
-          <Link to='/workout' className="nav-link">This Workout</Link>
+          <Link to='/workout' className="nav-link">Ongoing Workout</Link>
         }
         {
           workouts.length > 0 &&

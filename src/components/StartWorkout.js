@@ -11,33 +11,33 @@ import { Typography, Box } from "@mui/material";
 const ExtendedFab = styled(Fab)({
   width: "100%",
   borderRadius: "30px",
-  backgroundColor: "#00FF00", // Green neon color
-  color: "#FFFFFF", // White text color
+  backgroundColor: "#00FF00", 
+  color: "#FFFFFF", 
   "&:hover": {
-    backgroundColor: "#00CC00", // Darker green on hover
+    backgroundColor: "#00CC00", 
   },
 });
 
 const WhiteOutlinedTextField = styled(TextField)({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#FFFFFF", // White outlined border color
+      borderColor: "#FFFFFF", 
     },
     "&:hover fieldset": {
-      borderColor: "#FFFFFF", // White outlined border color on hover
+      borderColor: "#FFFFFF", 
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#00FF00", // Neon green outlined border color when focused
+      borderColor: "#00FF00", 
     },
   },
   "& .MuiInputLabel-root": {
-    color: "#FFFFFF", // White label color
+    color: "#FFFFFF", 
     "&:hover": {
-      color: "#00FF00", // Neon grenn label color on hover
+      color: "#00FF00", 
     },
   },
   "& .MuiInputBase-input": {
-    color: "#FFFFFF", // White text color
+    color: "#FFFFFF", 
   },
 });
 
