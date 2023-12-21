@@ -8,7 +8,7 @@ const BodyPart = ({ item, setBodyPart, bodyPart }) => (
     alignItems="center"
     justifyContent="center"
     className="bodyPart-card"
-    sx={bodyPart === item ? { borderTop: '4px solid #39FF14', background: '#fff', borderRadius: '20px', width: '150px', height: '100px', cursor: 'pointer', gap: '10px' } : { background: '#fff', borderRadius: '20px', width: '150px', height: '100px', cursor: 'pointer', gap: '10px' }}
+    sx={bodyPart === item ? {border: '3px solid #00FF00', background: '#fff', borderRadius: '20px', width: '150px', height: '100px', cursor: 'pointer', gap: '10px' } : { background: '#fff', borderRadius: '20px', width: '150px', height: '100px', cursor: 'pointer', gap: '10px' }}
     onClick={() => {
       console.log("Selecting ==>", item)
       setBodyPart(item);

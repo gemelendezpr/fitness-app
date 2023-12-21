@@ -27,11 +27,11 @@ const HeroBanner = () => (
         gap="15px"
       >
         {/* GitHub */}
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/gemelendezpr" target="_blank" rel="noopener noreferrer">
           <img src={GitHubIcon} alt="GitHub" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', cursor: 'pointer' }} />
         </a>
         {/* LinkedIn */}
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/gerardomelendezpr/" target="_blank" rel="noopener noreferrer">
         <img src={LinkedInIcon} alt="LinkedIn" style={{ width: '30px', height: '30px', borderRadius: '50%', background: '#000000', cursor: 'pointer' }} />
         </a>
         {/* Instagram */}
