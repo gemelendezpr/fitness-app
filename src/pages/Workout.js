@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography, Card, CardContent } from "@mui/material";
 import { WorkoutContext } from "../context/workout.context";
 import { API_URL } from "../utils/API_URL";
 import axios from "axios";
@@ -66,165 +66,159 @@ const Workout = () => {
           {thisWorkout.exercises.length > 0 && (
             <>
               {thisWorkout.exercises.map((element, index) => (
-                <Box key={element.exerciseId} mb={2}>
-                  <Typography variant="h4" sx={{ color: "#00FF00" }}>
-                    {element.exercise.name}
-                  </Typography>
-                  <Typography sx={{ color: "#FFFFFF" }}>
-                    lbs: {element.lbs}
-                  </Typography>
-                  <Typography sx={{ color: "#FFFFFF" }}>
-                    sets: {element.sets}
-                  </Typography>
-                  <Typography sx={{ color: "#FFFFFF" }}>
-                    reps: {element.reps}
-                  </Typography>
+                <Card key={element.exerciseId} sx={{ marginBottom: 2, backgroundColor: '#28282B' }}>
+                  <CardContent>
+                    <Typography variant="h4" sx={{ color: "#00FF00" }}>
+                      {element.exercise.name}
+                    </Typography>
+                    <Typography sx={{ color: "#FFFFFF" }}>lbs: {element.lbs}</Typography>
+                    <Typography sx={{ color: "#FFFFFF" }}>sets: {element.sets}</Typography>
+                    <Typography sx={{ color: "#FFFFFF" }}>reps: {element.reps}</Typography>
 
-                  <Button
-                    variant="outlined"
-                    onClick={() => setIsEditing(element.exerciseId)}
-                    disabled={exercisesForEditing.includes(element.exerciseId)}
-                    sx={{
-                      borderColor: "#39FF14", // Neon green color
-                      color: "#39FF14", // Neon green color
-                      "&:hover": {
-                        borderColor: "#00CC00", // Darker green on hover
-                        color: "#00CC00", // Darker green on hover
-                      },
-                    }}
-                  >
-                    Add Sets
-                  </Button>
-
-                  {exercisesForEditing.includes(element.exerciseId) && (
-                    <form
-                      onSubmit={(e) => handleWorkoutUpdate(e, thisWorkout.id)}
+                    <Button
+                      variant="outlined"
+                      onClick={() => setIsEditing(element.exerciseId)}
+                      disabled={exercisesForEditing.includes(element.exerciseId)}
+                      sx={{
+                        borderColor: "#39FF14", // Neon green color
+                        color: "#39FF14", // Neon green color
+                        "&:hover": {
+                          borderColor: "#00CC00", // Darker green on hover
+                          color: "#00CC00", // Darker green on hover
+                        },
+                      }}
                     >
-                      <TextField
-                        label="lbs"
-                        name="lbs"
-                        type="number"
-                        value={element.lbs}
-                        onChange={(e) => handleSetChange(e, index)}
-                        variant="outlined"
-                        fullWidth
-                        InputLabelProps={{
-                          style: { color: "#FFFFFF" }, // White label color
-                        }}
-                        InputProps={{
-                          style: {
-                            color: "#FFFFFF", // White text color
-                            "&:focus": {
-                              borderColor: "#00FF00 !important", // Neon green outline on focus
-                            },
-                          },
-                        }}
-                        sx={{
-                          marginBottom: 2,
-                          borderRadius: "10px",
-                          "& .MuiOutlinedInput-root": {
-                            "& fieldset": {
-                              borderColor: "#FFFFFF !important", // White outlined border color
-                            },
-                            "&:hover fieldset": {
-                              borderColor: "#FFFFFF !important", // White outlined border color on hover
-                            },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "#00FF00 !important", // Neon green outlined border color when focused
-                            },
-                          },
-                        }}
-                      />
+                      Add Sets
+                    </Button>
 
-                      <TextField
-                        label="reps"
-                        name="reps"
-                        type="number"
-                        value={element.reps}
-                        onChange={(e) => handleSetChange(e, index)}
-                        variant="outlined"
-                        fullWidth
-                        InputLabelProps={{
-                          style: { color: "#FFFFFF" }, // White label color
-                        }}
-                        InputProps={{
-                          style: {
-                            color: "#FFFFFF", // White text color
-                            "&:focus": {
-                              borderColor: "#00FF00 !important", // Neon green outline on focus
+                    {exercisesForEditing.includes(element.exerciseId) && (
+                      <form onSubmit={(e) => handleWorkoutUpdate(e, thisWorkout.id)}>
+                        <TextField
+                          label="lbs"
+                          name="lbs"
+                          type="number"
+                          value={element.lbs}
+                          onChange={(e) => handleSetChange(e, index)}
+                          variant="outlined"
+                          fullWidth
+                          InputLabelProps={{
+                            style: { color: "#FFFFFF" }, // White label color
+                          }}
+                          InputProps={{
+                            style: {
+                              color: "#FFFFFF", // White text color
+                              "&:focus": {
+                                borderColor: "#00FF00", // Neon green outline on focus
+                              },
                             },
-                          },
-                        }}
-                        sx={{
-                          marginBottom: 2,
-                          borderRadius: "10px",
-                          "& .MuiOutlinedInput-root": {
-                            "& fieldset": {
-                              borderColor: "#FFFFFF !important", // White outlined border color
+                          }}
+                          sx={{
+                            marginBottom: 2,
+                            borderRadius: "10px",
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#FFFFFF ", // White outlined border color
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#FFFFFF ", // White outlined border color on hover
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#00FF00 ", // Neon green outlined border color when focused
+                              },
                             },
-                            "&:hover fieldset": {
-                              borderColor: "#FFFFFF !important", // White outlined border color on hover
-                            },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "#00FF00 !important", // Neon green outlined border color when focused
-                            },
-                          },
-                        }}
-                      />
+                          }}
+                        />
 
-                      <TextField
-                        label="sets"
-                        name="sets"
-                        type="number"
-                        value={element.sets}
-                        onChange={(e) => handleSetChange(e, index)}
-                        variant="outlined"
-                        fullWidth
-                        InputLabelProps={{
-                          style: { color: "#FFFFFF" }, // White label color
-                        }}
-                        InputProps={{
-                          style: {
-                            color: "#FFFFFF", // White text color
-                            "&:focus": {
-                              borderColor: "#00FF00 !important", // Neon green outline on focus
+                        <TextField
+                          label="reps"
+                          name="reps"
+                          type="number"
+                          value={element.reps}
+                          onChange={(e) => handleSetChange(e, index)}
+                          variant="outlined"
+                          fullWidth
+                          InputLabelProps={{
+                            style: { color: "#FFFFFF" }, // White label color
+                          }}
+                          InputProps={{
+                            style: {
+                              color: "#FFFFFF", // White text color
+                              "&:focus": {
+                                borderColor: "#00FF00 ", // Neon green outline on focus
+                              },
                             },
-                          },
-                        }}
-                        sx={{
-                          marginBottom: 2,
-                          borderRadius: "10px",
-                          "& .MuiOutlinedInput-root": {
-                            "& fieldset": {
-                              borderColor: "#FFFFFF !important", // White outlined border color
+                          }}
+                          sx={{
+                            marginBottom: 2,
+                            borderRadius: "10px",
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#FFFFFF ", // White outlined border color
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#FFFFFF ", // White outlined border color on hover
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#00FF00 ", // Neon green outlined border color when focused
+                              },
                             },
-                            "&:hover fieldset": {
-                              borderColor: "#FFFFFF !important", // White outlined border color on hover
-                            },
-                            "&.Mui-focused fieldset": {
-                              borderColor: "#00FF00 !important", // Neon green outlined border color when focused
-                            },
-                          },
-                        }}
-                      />
+                          }}
+                        />
 
-                      <Button
-                        type="submit"
-                        variant="outlined"
-                        sx={{
-                          borderColor: "#39FF14", // Neon green color
-                          color: "#39FF14", // Neon green color
-                          "&:hover": {
-                            borderColor: "#00CC00", // Darker green on hover
-                            color: "#00CC00", // Darker green on hover
-                          },
-                        }}
-                      >
-                        Submit
-                      </Button>
-                    </form>
-                  )}
-                </Box>
+                        <TextField
+                          label="sets"
+                          name="sets"
+                          type="number"
+                          value={element.sets}
+                          onChange={(e) => handleSetChange(e, index)}
+                          variant="outlined"
+                          fullWidth
+                          InputLabelProps={{
+                            style: { color: "#FFFFFF" }, // White label color
+                          }}
+                          InputProps={{
+                            style: {
+                              color: "#FFFFFF", // White text color
+                              "&:focus": {
+                                borderColor: "#00FF00 ", // Neon green outline on focus
+                              },
+                            },
+                          }}
+                          sx={{
+                            marginBottom: 2,
+                            borderRadius: "10px",
+                            "& .MuiOutlinedInput-root": {
+                              "& fieldset": {
+                                borderColor: "#FFFFFF ", // White outlined border color
+                              },
+                              "&:hover fieldset": {
+                                borderColor: "#FFFFFF ", // White outlined border color on hover
+                              },
+                              "&.Mui-focused fieldset": {
+                                borderColor: "#00FF00 ", // Neon green outlined border color when focused
+                              },
+                            },
+                          }}
+                        />
+
+                        <Button
+                          type="submit"
+                          variant="outlined"
+                          sx={{
+                            borderColor: "#39FF14", // Neon green color
+                            color: "#39FF14", // Neon green color
+                            "&:hover": {
+                              borderColor: "#00CC00", // Darker green on hover
+                              color: "#00CC00", // Darker green on hover
+                            },
+                          }}
+                        >
+                          Submit
+                        </Button>
+                      </form>
+                    )}
+                  </CardContent>
+                </Card>
               ))}
             </>
           )}

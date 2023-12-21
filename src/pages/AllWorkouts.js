@@ -33,7 +33,7 @@ const AllWorkouts = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                backgroundColor: "#272727", // Dark background color
+                backgroundColor: "#28282B", // Dark background color
                 borderRadius: "10px",
               }}
             >
