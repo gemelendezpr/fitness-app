@@ -33,7 +33,7 @@ const AllWorkouts = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                backgroundColor: "#28282B", // Dark background color
+                backgroundColor: "#28282B",
                 borderRadius: "10px",
               }}
             >
@@ -44,11 +44,11 @@ const AllWorkouts = () => {
                 variant="outlined"
                 onClick={() => deleteWorkout(element.id)}
                 sx={{
-                  borderColor: "#39FF14", // Neon green color
-                  color: "#39FF14", // Neon green color
+                  borderColor: "#39FF14", 
+                  color: "#39FF14", 
                   "&:hover": {
-                    borderColor: "#00CC00", // Darker green on hover
-                    color: "#00CC00", // Darker green on hover
+                    borderColor: "#00CC00", 
+                    color: "#00CC00", 
                   },
                 }}
               >

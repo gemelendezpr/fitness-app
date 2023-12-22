@@ -132,7 +132,7 @@ const WorkoutProvider = ({ children }) => {
                     console.log(err)
                 })
 
-            // console.log("Adding exercise Id", exerciseId)
+         
             console.log("This is the workout:", workout)
         }
         
