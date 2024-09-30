@@ -1,70 +1,28 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# REPS - Fitness Tracker and Exercise Library
 
-## Available Scripts
+REPS is an intuitive fitness tracker and exercise library designed to help users streamline their workout routines and track their progress efficiently. With a built-in exercise library enriched by YouTube video searches, users can explore and discover new exercises alongside their workout tracking. The application allows for full CRUD (Create, Read, Update, Delete) functionality, enabling users to build, modify, and maintain personalized workout plans.
+## Features
 
-In the project directory, you can run:
+- Workout Tracker: Log, update, and delete workouts, keeping track of exercise routines and progress.
+- Exercise Library: Explore exercises from a robust library, complete with YouTube video tutorials, providing users with instructional content for each exercise.
+- CRUD Functionality: Users can create, read, update, and delete their workout plans, ensuring they can adjust and track their fitness journey in real-time.
+- Responsive Design: Optimized for all devices, ensuring a seamless user experience across desktops, tablets, and mobile devices.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Client:** 
+- React + Vite: For a fast and modern development environment, allowing rapid iteration and efficient build times.
+- Material UI (MUI): A React component library providing pre-styled UI components for building responsive, aesthetically pleasing user interfaces.
+- CSS: Custom styling alongside Material UI for further design refinement and flexibility.
+- Fetch API: Leveraged to fetch exercise data and interact with a third-party YouTube API to enrich the exercise library with instructional videos.
+**Server:** 
+- Adaptable.io: Used for external integrations to enhance data management.
 
-### `npm test`
+## Purpose
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The REPS Fitness Tracker was developed to provide an efficient tool for fitness enthusiasts to track their workout routines while accessing a rich library of exercises. The application helps users stay organized, visualize their progress, and learn new exercises through integrated YouTube tutorials.
+## Deployment
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is deployed on Netlify and can be accessed at https://main--marvelous-mandazi-7df721.netlify.app/
